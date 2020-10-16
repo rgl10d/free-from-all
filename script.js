@@ -20,15 +20,15 @@ $(document).ready(function() {
             type = temp;
             queryURL += type;
         }
-    
+
         //need to create model function that will add results
         queryURL += APIKey;
         getMakeupInfo(queryURL);
     })
     
     
-    //will need to change this class below to reflect the class of products
-    $(document).on("click", ".product", function () {
+    //updated class to reflect "product" on html & below in order to have response work
+    $(document).on("click", ".col-sm-12.product", function () {
         var name = "red lipstick" //$(this).attr("data-item");
     
         var searchArray = name.split(" ");
@@ -54,10 +54,10 @@ $(document).ready(function() {
             url: queryURL,
             method: "GET"
         }).then(function(response) {
-            // console.log(response);
-            // console.log(response[0].name);
-            // console.log(response[0].price);
-            // console.log(response[0].image_link);
+            console.log(response);
+            console.log(response[0].name);
+            console.log(response[0].price);
+            console.log(response[0].image_link);
 
             //can resize the for loop to however long we want
             for (var i = 0; i < 10; i++) {
@@ -76,6 +76,22 @@ $(document).ready(function() {
                 priceRow = $("<div>").addClass("row").append($("<div>")).addClass("col-sm-12").text("Price: " + response[i].price);
                 newCol.append(priceRow);
                 newRow.append(newCol);
+               
+                //creating a button that we can select for the modal to pop up w/ product details 
+                buttonRow=$("<div>").addClass("row").append($("<div>")).addClass("col-sm-12");
+                var viewBtn=$("<input/>").attr({type:"button",class:"btn btn-secondary btn-sm",id:"detail",value:"view details"});
+                buttonRow.append(viewBtn);
+                newCol.append(buttonRow);
+
+                // creating an on click for modal pop-up to be triggered
+
+                $("#detail").on("click",function(){
+                    $(".popup-content").append(imgTag);
+                    $(".popup, .popup-content").addClass("active")});
+                    $(".btn.btn-secondary.btn-sm.close, .popup").on("click", function(){
+                    $(".popup, .popup-content").removeClass("active");
+                });
+
 
                 //appending to body, but can also append to a class or id
                 $("body").append(newRow);
@@ -83,6 +99,8 @@ $(document).ready(function() {
             
         })
     }
+
+
 
     function getWalmartInfo(walmartURL) {
         $.ajax({
