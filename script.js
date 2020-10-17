@@ -1,11 +1,10 @@
 console.log("test");
-
-
+console.log(window.navigator.geolocation.getCurrentPosition(console.log, console.log));
 var APIKey = "&rapidapi-key=092293fd7emshf39e0f6436d8314p1ad470jsnee116871f2d1";
 $(document).ready(function() {
 
  
-    $("#searchButton").on("click", function() {
+    // $("#searchButton").on("click", function() {
         var queryURL = "https://makeup.p.rapidapi.com/products.json?";
         var makeup = "" //$("#searchField").val();
         var type = "lipstick" //$("#type").val();
@@ -24,7 +23,29 @@ $(document).ready(function() {
         //need to create model function that will add results
         queryURL += APIKey;
         getMakeupInfo(queryURL);
-    })
+
+        // $.ajax({
+        //     url: "https://dev.virtualearth.net/REST/v1/Imagery/Map/Road?pushpin=33.980499267578125,-84.21903991699219&pushpin=33.9613151550293,-84.12788391113281&format=jpeg&map&MapMetaData=0&key=AizLYVCVmDtzFe35OyVFF6FoMBjJuPA96Bc_pPQ50KQ9oMiNl4Pr89MbxB6FbzG9",
+        //     method: "GET"
+        // }).then(function(response) {
+        //     $("body").append($("<img>").attr("src", response));
+        // })
+        $("body").append($("<img>").attr("src", "https://dev.virtualearth.net/REST/v1/Imagery/Map/Road?pushpin=33.980499267578125,-84.21903991699219&pushpin=33.9613151550293,-84.12788391113281&format=jpeg&map&MapMetaData=0&key=AizLYVCVmDtzFe35OyVFF6FoMBjJuPA96Bc_pPQ50KQ9oMiNl4Pr89MbxB6FbzG9"));
+        
+        Microsoft.Maps.ConfigurableMap.createFromConfig(document.getElementById('myMap'), 'https://bingmapsisdk.blob.core.windows.net/isdksamples/configmap2.json', false, null, successCallback, errorCallback);
+        function successCallback(mapObj) {
+            document.getElementById('printoutPanel').innerHTML = 'success';
+        }
+        function errorCallback(message) {
+            document.getElementById('printoutPanel').innerHTML = message;
+        }
+
+        var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+        var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), null);
+        map.entities.push(pushpin);
+        pushpin.setOptions({ enableHoverStyle: true, enableClickedStyle: true });
+        
+        // })
     
     
     //updated class to reflect "product" on html & below in order to have response work
@@ -42,7 +63,7 @@ $(document).ready(function() {
         }
         console.log(searchItem);
         // http://api.walmartlabs.com/v1/search?query=red+lipstick&format=json&apiKey=d7hjdvye4sky5cdwmmmtf3bf
-        var walmartURL = "http://api.walmartlabs.com/v1/search?query=" + searchItem + "&format=json&apiKey=d7hjdvye4sky5cdwmmmtf3bf";
+        var walmartURL = "https://cors-anywhere.herokuapp.com/https://api.walmartlabs.com/v1/search?query=" + searchItem + "&format=json&apiKey=d7hjdvye4sky5cdwmmmtf3bf";
         getWalmartInfo(walmartURL);
         // createModal();
     })
@@ -66,14 +87,14 @@ $(document).ready(function() {
                 var newCol = $("<div>").addClass("col-sm-12");
                 
                 imageRow = $("<div>").addClass("row").append($("<div>")).addClass("col-sm-12");
-                var imgTag = $("<img>").attr("src", response[i].image_link).attr("height", "30px").attr("width", "30px");
+                var imgTag = $("<img>").attr("src", response[i].image_link).attr("height", "30px").attr("width", "30px").attr("class", "images");
                 imageRow.append(imgTag);
                 newCol.append(imageRow);
 
                 //add data item to name or image?
-                nameRow = $("<div>").addClass("row").append($("<div>")).addClass("col-sm-12").text("Name: " + response[i].name);
+                nameRow = $("<div>").addClass("row").append($("<div>")).addClass("col-sm-12 names").text("Name: " + response[i].name);
                 newCol.append(nameRow);
-                priceRow = $("<div>").addClass("row").append($("<div>")).addClass("col-sm-12").text("Price: " + response[i].price);
+                priceRow = $("<div>").addClass("row").append($("<div>")).addClass("col-sm-12 prices").text("Price: " + response[i].price);
                 newCol.append(priceRow);
                 newRow.append(newCol);
                
