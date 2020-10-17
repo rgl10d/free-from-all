@@ -9,6 +9,12 @@ body {
   margin-top: 10px;
 }
 
+#sub-title {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
 .navbar-brand {
   margin: 0 auto;
 }
