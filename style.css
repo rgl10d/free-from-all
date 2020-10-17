@@ -1,9 +1,39 @@
+body {
+  background-color: black;
+}
+
+#main-title {
+  color: white;
+  font-family: 'Dancing Script', cursive;
+  font-size: 50px;
+  margin-top: 10px;
+}
+
 .navbar-brand {
   margin: 0 auto;
 }
 
 #search-col {
   margin-top: 20px;
+}
+
+#makeup-types {
+  color: white;
+  background-color: black;
+  border-color: darkslategray;
+  border-width: thick;
+}
+
+.filter-btn {
+  color: white;
+  background-color: black;
+  border-color: white;
+  border-width: thick;
+}
+
+.filter-btn:hover {
+  color: white;
+  border-color: darkred;
 }
 
 .popup-overlay {
@@ -14,24 +44,15 @@
   visibility:hidden;
   }
 
-  .popup-overlay.active{
-    visibility:visible;
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
-    
-    .popup-content.active {
-    visibility:visible;
-      background-color:lightblue;
-      margin: 15% auto; /* 15% from the top and centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 30%; /* Could be more or less, depending on screen size */
-    }
+  
+  .popup-content.active {
+  position: fixed;
+  z-index: 1;
+  visibility: visible;
+  height: 500px;
+  width: 300px;
+  margin-left: 35px;
+  padding: 20px;
+  border: 15px solid #888;
+  background-color: darkslategrey;
+  }
