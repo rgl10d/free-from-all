@@ -6,7 +6,7 @@ body {
   color: white;
   font-family: "Dancing Script", cursive;
   font-size: 50px;
-  margin-top: 10px;
+  margin-top: 50px;
 }
 
 .navbar-brand {
@@ -29,19 +29,31 @@ body {
   background-color: black;
   border-color: white;
   border-width: thick;
+  margin: 20px 5px 0px 0px;
 }
 
 .filter-btn:hover {
   color: white;
-  border-color: darkred;
+  border-color: red;
+}
+
+.filter-btn:active{
+  border-color: red;
+}
+
+.product{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .popup-overlay {
-  visibility: hidden;
-}
 
+  visibility:hidden;
+}
+  
 .popup-content {
-  visibility: hidden;
+  visibility:hidden;
 }
 
 .popup-content.active {
