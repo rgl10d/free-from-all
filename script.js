@@ -3,8 +3,7 @@ console.log(window.navigator.geolocation.getCurrentPosition(console.log, console
 var APIKey = "&rapidapi-key=092293fd7emshf39e0f6436d8314p1ad470jsnee116871f2d1";
 $(document).ready(function() {
 
- 
-    // $("#searchButton").on("click", function() {
+    $("#searchButton").on("click", function() {
         var queryURL = "https://makeup.p.rapidapi.com/products.json?";
         var makeup = "" //$("#searchField").val();
         var type = "lipstick" //$("#type").val();
@@ -45,7 +44,7 @@ $(document).ready(function() {
         map.entities.push(pushpin);
         pushpin.setOptions({ enableHoverStyle: true, enableClickedStyle: true });
         
-        // })
+    })
     
     
     //updated class to reflect "product" on html & below in order to have response work
@@ -133,6 +132,5 @@ $(document).ready(function() {
             var brand = response.brandName;
             var price = response.salePrice;
         })
-    }
+    } 
 })
-
