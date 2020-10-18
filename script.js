@@ -68,6 +68,19 @@ $(document).ready(function() {
         // createModal();
     })
 
+    function showMakeupDetail(record){
+    //    Return anonymous function tied to record detail
+        return function(){
+            var imgTag = $("<img>").attr("src", record.image_link).attr("height", "30px").attr("width", "30px").attr("class", "images");
+                imageRow.append(imgTag);
+            $(".popup-content").html('').append(imgTag);
+            $(".popup, .popup-content").addClass("active");
+            $(".btn.btn-secondary.btn-sm.close, .popup").on("click", function(){
+                $(".popup, .popup-content").removeClass("active");
+            });            
+        };
+    }
+
     function getMakeupInfo(queryURL) {
         //code here for ajax call and dynamic element creation
 
@@ -106,12 +119,7 @@ $(document).ready(function() {
 
                 // creating an on click for modal pop-up to be triggered
 
-                $("#detail").on("click",function(){
-                    $(".popup-content").append(imgTag);
-                    $(".popup, .popup-content").addClass("active")});
-                    $(".btn.btn-secondary.btn-sm.close, .popup").on("click", function(){
-                    $(".popup, .popup-content").removeClass("active");
-                });
+                viewBtn.on("click",showMakeupDetail(response[i]));
 
 
                 //appending to body, but can also append to a class or id
