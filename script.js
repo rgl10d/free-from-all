@@ -1,9 +1,30 @@
 console.log("test");
-console.log(window.navigator.geolocation.getCurrentPosition(console.log, console.log));
+
+function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+    }
+}
+  
+function showPosition(position) {
+    localStorage.setItem("lat", JSON.stringify(position.coords.latitude));
+    localStorage.setItem("long", JSON.stringify(position.coords.longitude));
+}
+getLocation();
+var lat = JSON.parse(localStorage.getItem("lat"));
+var long = JSON.parse(localStorage.getItem("long"));
+
+console.log("user latitude: " + lat);
+console.log("user longitude: " + long);
+
 var APIKey = "&rapidapi-key=092293fd7emshf39e0f6436d8314p1ad470jsnee116871f2d1";
 $(document).ready(function() {
 
+ 
     $("#searchButton").on("click", function() {
+
         var queryURL = "https://makeup.p.rapidapi.com/products.json?";
         var makeup = "" //$("#searchField").val();
         var type = "lipstick" //$("#type").val();
