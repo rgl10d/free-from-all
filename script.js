@@ -65,7 +65,7 @@ $(document).ready(function() {
         map.entities.push(pushpin);
         pushpin.setOptions({ enableHoverStyle: true, enableClickedStyle: true });
         
-        // })
+    })
     
     
     //updated class to reflect "product" on html & below in order to have response work
@@ -153,6 +153,5 @@ $(document).ready(function() {
             var brand = response.brandName;
             var price = response.salePrice;
         })
-    }
+    } 
 })
-
