@@ -30,7 +30,7 @@ $(document).ready(function() {
         // }).then(function(response) {
         //     $("body").append($("<img>").attr("src", response));
         // })
-        $("body").append($("<img>").attr("src", "https://dev.virtualearth.net/REST/v1/Imagery/Map/Road?pushpin=33.980499267578125,-84.21903991699219&pushpin=33.9613151550293,-84.12788391113281&format=jpeg&map&MapMetaData=0&key=AizLYVCVmDtzFe35OyVFF6FoMBjJuPA96Bc_pPQ50KQ9oMiNl4Pr89MbxB6FbzG9"));
+        $("#results-col").append($("<img>").attr("src", "https://dev.virtualearth.net/REST/v1/Imagery/Map/Road?pushpin=33.980499267578125,-84.21903991699219&pushpin=33.9613151550293,-84.12788391113281&format=jpeg&map&MapMetaData=0&key=AizLYVCVmDtzFe35OyVFF6FoMBjJuPA96Bc_pPQ50KQ9oMiNl4Pr89MbxB6FbzG9"));
         
         Microsoft.Maps.ConfigurableMap.createFromConfig(document.getElementById('myMap'), 'https://bingmapsisdk.blob.core.windows.net/isdksamples/configmap2.json', false, null, successCallback, errorCallback);
         function successCallback(mapObj) {
@@ -122,8 +122,8 @@ $(document).ready(function() {
                 viewBtn.on("click",showMakeupDetail(response[i]));
 
 
-                //appending to body, but can also append to a class or id
-                $("body").append(newRow);
+                //appending to results, but can also append to a class or id
+                $("#results-col").append(newRow);
             }
             
         })
