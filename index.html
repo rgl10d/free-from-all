@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!--Search-->
+    <!--Title Element-->
     <div class="cell">
       <h1 class="text-center" id="main-title">Free-from-All Makeup Source</h1>
     </div>
@@ -89,26 +89,27 @@
       </div>
     </div>
     <!-- empty container for the results  -->
-    <div class="container" id="results-container">
-      <div class="row">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6" id="results-col">  </div>
+    <div class="grid-container" id="results-container">
+      <div class="grid-x">
+        <div class="cell" id="results-col"></div>
       </div>
     </div>
     
     <!-- creating modal for makeup selection details -->
 
-    <!--Creates the popup body-->
-    <div class="popup-overlay">
+    <!-- <button class="button filter-btn" data-open="product-details">Layout Test</button> -->
 
-    <!--Creates the popup content-->
-      <div class="popup-content">
-        <h2></h2>
-        <p></p>
-    <!--popup's close button-->
-        <button class="btn btn-secondary btn-sm close">x</button>    
-      </div>
+    <div class="reveal popup-content" id="product-details" data-reveal>
+      <h3 class="detail-information" id="detail-name">Product Name</h3>
+      <p class="detail-information" id="detail-brand">Brand:</p>
+      <p class="detail-information" id="detail-description">Description:</p>
+      <p class="detail-information" id="detail-tags">Tags:</p>
+      <div id="myMap"></div>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
+
 
     <!--Javascript Links-->
     <script
@@ -119,6 +120,9 @@
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <script src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AizLYVCVmDtzFe35OyVFF6FoMBjJuPA96Bc_pPQ50KQ9oMiNl4Pr89MbxB6FbzG9'
           type='text/javascript' ></script>
+    <script>
+      $(document).foundation();
+    </script>
     <script src="script.js" async defer></script>
   </body>
 </html>

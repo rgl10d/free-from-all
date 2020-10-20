@@ -82,22 +82,16 @@ $(document).ready(function() {
             }
         }
         console.log(searchItem);
-        // http://api.walmartlabs.com/v1/search?query=red+lipstick&format=json&apiKey=d7hjdvye4sky5cdwmmmtf3bf
-        var walmartURL = "https://cors-anywhere.herokuapp.com/https://api.walmartlabs.com/v1/search?query=" + searchItem + "&format=json&apiKey=d7hjdvye4sky5cdwmmmtf3bf";
-        getWalmartInfo(walmartURL);
         // createModal();
     })
 
     function showMakeupDetail(record){
     //    Return anonymous function tied to record detail
         return function(){
-            var imgTag = $("<img>").attr("src", record.image_link).attr("height", "30px").attr("width", "30px").attr("class", "images");
-                imageRow.append(imgTag);
-            $(".popup-content").html('').append(imgTag);
-            $(".popup, .popup-content").addClass("active");
-            $(".btn.btn-secondary.btn-sm.close, .popup").on("click", function(){
-                $(".popup, .popup-content").removeClass("active");
-            });            
+            var imgTag = $("<img>").attr({
+                "src": record.image_link,
+                "class": "modal-image"});
+            $(".popup-content").html('').append(imgTag);            
         };
     }
 
@@ -116,26 +110,31 @@ $(document).ready(function() {
             //can resize the for loop to however long we want
             for (var i = 0; i < 10; i++) {
                 
-                var newRow = $("<div>").addClass("row");
-                var newCol = $("<div>").addClass("col-sm-12");
+                var newRow = $("<div>").addClass("grid-x");
+                var newCol = $("<div>").attr("class", "results-line cell");
                 
-                imageRow = $("<div>").addClass("row").append($("<div>")).addClass("col-sm-12");
-                var imgTag = $("<img>").attr("src", response[i].image_link).attr("height", "30px").attr("width", "30px").attr("class", "images");
-                imageRow.append(imgTag);
-                newCol.append(imageRow);
+                // imageRow = $("<div>").addClass("grid-x");
+                var imgTag = $("<img>").attr({
+                    "src": response[i].image_link,
+                    "class": "results-image"});
+                // imageRow.append(imgTag);
+                newCol.append(imgTag);
 
                 //add data item to name or image?
-                nameRow = $("<div>").addClass("row").append($("<div>")).addClass("col-sm-12 names").text("Name: " + response[i].name);
+                nameRow = $("<h3>").addClass("names").text(response[i].name);
                 newCol.append(nameRow);
-                priceRow = $("<div>").addClass("row").append($("<div>")).addClass("col-sm-12 prices").text("Price: " + response[i].price);
+                priceRow = $("<p>").addClass("prices").text("$" + response[i].price);
                 newCol.append(priceRow);
                 newRow.append(newCol);
                
                 //creating a button that we can select for the modal to pop up w/ product details 
-                buttonRow=$("<div>").addClass("row").append($("<div>")).addClass("col-sm-12");
-                var viewBtn=$("<input/>").attr({type:"button",class:"btn btn-secondary btn-sm",id:"detail",value:"view details"});
-                buttonRow.append(viewBtn);
-                newCol.append(buttonRow);
+                var viewBtn=$("<button>").attr({
+                    class:"button filter-btn results-btn",
+                    id:"detail-" + i,
+                    "data-open":"product-details",
+                    value:"view details"})
+                    .text("Product Details");
+                newCol.append(viewBtn);
 
                 // creating an on click for modal pop-up to be triggered
 
@@ -148,18 +147,4 @@ $(document).ready(function() {
             
         })
     }
-
-
-
-    function getWalmartInfo(walmartURL) {
-        $.ajax({
-            url: walmartURL,
-            method: "GET"
-        }).then(function(response) {
-            console.log(response);
-            var name = response.name;
-            var brand = response.brandName;
-            var price = response.salePrice;
-        })
-    } 
 })

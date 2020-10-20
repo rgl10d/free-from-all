@@ -10,10 +10,6 @@ body {
   margin-top: 50px;
 }
 
-.navbar-brand {
-  margin: 0 auto;
-}
-
 #search-col {
   margin-top: 20px;
 }
@@ -23,6 +19,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 
 /* Buttons */
 #searchButton {
@@ -36,8 +33,6 @@ body {
 }
 
 #searchButton:hover {
-  background-color: black;
-  color: white;
   border-color: green;
 }
 
@@ -60,7 +55,7 @@ body {
   border-color: red;
 }
 
-.filter-btn:focus{
+.filter-btn:focus {
   background-color: black;
   border-color: red;
 }
@@ -85,27 +80,55 @@ body {
 }
 
 
-/* Modal Styles */
-.popup-overlay {
-  visibility:hidden;
-}
-  
-.popup-content {
-  visibility:hidden;
+/* Results List Styles */
+.results-line {
+  border-bottom: 1px solid white;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
-.popup-content.active {
+.results-image {
+  height: 100px;
+  width: 100px;
+  float: left;
+  margin-right: 25px;
+}
+
+.results-btn {
+  float: right;
+  margin-bottom: 30px;
+}
+
+.names {
+  font-family: "Dancing Script", cursive;
+  color: white;
+}
+
+.prices {
+  color: white;
+}
+
+
+/* Modal Styles */
+#product-details {
   position: fixed;
-  visibility: visible;
-  z-index: 9999;
-  height: 500px;
-  width: 500px;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  border: 15px solid red;
+  transform: translate(-50%, 50%);
+  color: white;
   background-color: black;
+  padding: 20px;
+  border: 10px solid red;
+}
+
+#detail-name {
+  font-family: "Dancing Script", cursive;
+  border-bottom: 2px solid white;
+  margin-bottom: 23px;
+}
+
+.modal-image {
+  height: 100px;
+  width: 100px;
 }
 
 
@@ -128,9 +151,5 @@ body {
     max-width: 300px;
     height: auto;
   }
-
-  .popup-content.active {
-    height: 375px;
-    width: 375px;
     
 }
