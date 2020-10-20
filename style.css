@@ -110,8 +110,8 @@ body {
   position: fixed;
   visibility: visible;
   z-index: 9999;
-  height: 700px;
-  width: 700px;
+  height: 500px;
+  width: 500px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
