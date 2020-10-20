@@ -181,8 +181,8 @@ function showMakeupDetail(record) {
     imageRow.append(imgTag);
     $(".popup-content").html("").append(imgTag);
     $(".popup, .popup-content").addClass("active");
-    $(".btn.btn-secondary.btn-sm.close, .popup").on("click", function () {
-      $(".popup, .popup-content").removeClass("active");
+    $("#close, .popup-overlay").on("click", function() {
+      $(".popup-overlay, .popup-content").removeClass("active");
     });
   };
 }
@@ -247,7 +247,8 @@ function getMakeupInfo(queryURL) {
 
       // creating an on click for modal pop-up to be triggered
 
-      viewBtn.on("click", showMakeupDetail(response[i]));
+      viewBtn.on("click", showMakeupDetail(response[i].description));
+
 
       //appending to body, but can also append to a class or id
       $("body").append(newRow);
