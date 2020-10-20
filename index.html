@@ -79,15 +79,23 @@
         </div>
         <!-- Specific filter buttons -->
         <div class="cell product">
-          <button class="button filter-btn" id="ewg-btn">EWG Verified</button>
-          <button class="button filter-btn" id="org-btn">Organic</button>
-          <button class="button filter-btn" id="chem-btn">Chemical Free</button>
-          <button class="button filter-btn" id="veg-btn">Vegan</button>
-          <button class="button filter-btn" id="glu-btn">Gluten Free</button>
+          <button class="button filter-btn" id="ewg-btn" data-makeupType="ewg">EWG Verified</button>
+          <button class="button filter-btn" id="org-btn" data-makeupType="organic">Organic</button>
+          <button class="button filter-btn" id="chem-btn" data-makeupType="chemfree">Chemical Free</button>
+          <button class="button filter-btn" id="veg-btn" data-makeupType="vegan">Vegan</button>
+          <button class="button filter-btn" id="glu-btn" data-makeupType="glutenfree">Gluten Free</button>
+
         </div>
       </div>
     </div>
-
+    <!-- empty container for the results  -->
+    <div class="container" id="results-container">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" id="results-col">  </div>
+      </div>
+    </div>
+    
     <!-- creating modal for makeup selection details -->
 
     <!--Creates the popup body-->
@@ -111,9 +119,6 @@
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <script src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AizLYVCVmDtzFe35OyVFF6FoMBjJuPA96Bc_pPQ50KQ9oMiNl4Pr89MbxB6FbzG9'
           type='text/javascript' ></script>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation/foundation.js"></script>
-    <script src="js/foundation/foundation.dropdown.js"></script>
     <script src="script.js" async defer></script>
   </body>
 </html>
