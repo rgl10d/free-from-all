@@ -175,8 +175,8 @@ function showMakeupDetail(record) {
   return function () {
     var imgTag = $("<img>")
       .attr("src", record.image_link)
-      .attr("height", "30px")
-      .attr("width", "30px")
+      .attr("height", "auto")
+      .attr("width", "auto")
       .attr("class", "images");
     imageRow.append(imgTag);
     $(".popup-content").html("").append(imgTag);
@@ -247,7 +247,7 @@ function getMakeupInfo(queryURL) {
 
       // creating an on click for modal pop-up to be triggered
 
-      viewBtn.on("click", showMakeupDetail(response[i].description));
+      viewBtn.on("click", showMakeupDetail(response[i]));
 
 
       //appending to body, but can also append to a class or id
