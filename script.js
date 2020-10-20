@@ -116,7 +116,8 @@ console.log("makeup: " + makeup);
     var temp = "brand=" + makeup;
     makeup = temp;
     queryURL += makeup;
-  } else if (makeup.indexOf(" ") !== -1) {
+  }
+  if (makeup.indexOf(" ") !== -1) {
     var temp = makeup.split(" ");
     makeup = "";
     for (var i = 0; i < temp.length; i++) {
@@ -140,39 +141,32 @@ console.log("makeup: " + makeup);
 });
 
 
-// function showMakeupDetail(record) {
-  $(document).on("click", "#details", function() {
-    // if (event.matches("button")) {
+function showMakeupDetail(record) {
+  return function(){
+    var modalEl = $("#product-details");
+      modalEl.html("");
       var dataIndex = $(this).attr("data-index");
-      console.log(dataIndex);
     // }
       
   
   //    Return anonymous function tied to record detail
 
-  var makeupFromStorage = JSON.parse(localStorage.getItem("makeupObject"));
-  console.log(makeupFromStorage);
-
-    var imgTag = $("<img>")
-      .attr("src", makeupFromStorage[dataIndex].image_link)
-      .attr("height", "30px")
-      .attr("width", "30px")
-
-      .attr("class", "images");
-    $(".popup-content").append(imgTag);
-    $(".popup-content").html("").append(imgTag);
-    var name = $("<div>").text("Name: " + makeupFromStorage[dataIndex].name);
-    $(".popup-content").append(name);
-    // var description = $("<div>").text("Description: " + makeupFromStorage[dataIndex].description);
-    // $(".popup-content").append(description);
-    var mapDiv = $("<div>").attr("id", "myMap");
-    mapDiv.css({
-      "position": "relative",
-      "height": "400px",
-      "width": "400px",
-      "left": "50%"
+    var makeupFromStorage = JSON.parse(localStorage.getItem("makeupObject"));
+    console.log(makeupFromStorage);
+    var imgTag = $("<img>").attr({
+        "src": record.image_link,
+        "class": "modal-image"});
+    var detailName = $("<h3>").text(record.name).attr("id", "detail-name");
+    var brandCaps = record.brand.toUpperCase();
+    var detailBrand = $("<p>").text(brandCaps).attr("id", "detail-brand");
+    var mapDiv = $("<div>").attr({
+        "id": "myMap",
+        "class": "modal-map",
     });
-    $(".popup-content").append(mapDiv);
+    modalEl.append(imgTag);
+    modalEl.append(detailName);
+    modalEl.append(detailBrand);
+    modalEl.append(mapDiv);
     var latFromStorage = JSON.parse(localStorage.getItem("lat"));
     var lonFromStorage = JSON.parse(localStorage.getItem("lon"));
     if (!latFromStorage || !lonFromStorage) {
@@ -180,12 +174,9 @@ console.log("makeup: " + makeup);
     } else {
       GetMap();
     }
-    $(".popup, .popup-content").addClass("active");
-    $("#close, .popup-overlay").on("click", function() {
-      $(".popup-overlay, .popup-content").removeClass("active");
-    });
-    
-})
+    }
+}
+
 
 function getMakeupInfo(queryURL) {
   //code here for ajax call and dynamic element creation
@@ -194,61 +185,37 @@ function getMakeupInfo(queryURL) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    console.log(response);
-    console.log(response[0].name);
-    console.log(response[0].price);
-    console.log(response[0].image_link);
     localStorage.setItem("makeupObject", JSON.stringify(response));
 
     //can resize the for loop to however long we want
     for (var i = 0; i < 10; i++) {
-      var newRow = $("<div>").addClass("row");
-      var newCol = $("<div>").addClass("col-sm-12");
-
-      imageRow = $("<div>")
-        .addClass("row")
-        .append($("<div>"))
-        .addClass("col-sm-12");
-      var imgTag = $("<img>")
-        .attr("src", response[i].image_link)
-        .attr("height", "30px")
-        .attr("width", "30px")
-        .attr("class", "images")
-        .attr("data-index", i);
-      imageRow.append(imgTag);
-      newCol.append(imageRow);
+        var newRow = $("<div>").attr("class", "grid-x");
+        var newCol = $("<div>").attr("class", "results-line cell");
+        
+        // imageRow = $("<div>").addClass("grid-x");
+        var imgTag = $("<img>").attr({
+            "src": response[i].image_link,
+            "class": "results-image"});
+        // imageRow.append(imgTag);
+        newCol.append(imgTag);
 
       //add data item to name or image?
-      nameRow = $("<div>")
-        .addClass("row")
-        .append($("<div>"))
-        .addClass("col-sm-12 names")
-        .attr("data-index", i)
-        .text("Name: " + response[i].name);
-      newCol.append(nameRow);
-      priceRow = $("<div>")
-        .addClass("row")
-        .append($("<div>"))
-        .addClass("col-sm-12 prices")
-        .attr("data-index", i)
-        .text("Price: " + response[i].price);
-      newCol.append(priceRow);
+      nameEl = $("<h3>").addClass("names").text(response[i].name);
+      priceEl = $("<p>").addClass("prices").text("$" + response[i].price);
+      descriptionEl = $("<p>").addClass("description").text(response[i].description);
+      newCol.append(nameEl);
+      newCol.append(priceEl);
+      newCol.append(descriptionEl);
       newRow.append(newCol);
 
       //creating a button that we can select for the modal to pop up w/ product details
-      buttonRow = $("<div>")
-        .addClass("row")
-        .append($("<div>"))
-        .addClass("col-sm-12")
-        .attr("data-index", i);
-      var viewBtn = $("<button>")
-        .addClass("details btn btn-secondary btn-sm")
-        .attr("id", "details")
-        .attr("data-index", i)
-        .attr("type", "button")
-        .text("View Details");
-      buttonRow.append(viewBtn);
-      newCol.append(buttonRow);
+        var viewBtn=$("<button>").attr({
+            class:"button filter-btn results-btn",
+            id:"details-" + i,
+            "data-open":"product-details",
+            value:"view details"})
+            .text("Product Details");
+        newCol.append(viewBtn);
 
       // creating an on click for modal pop-up to be triggered
 
