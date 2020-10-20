@@ -100,21 +100,33 @@ function GetMap() {
     }
 }
 
-// var type = "";
-// $(".button").on("click", function() {
-//   type = $(this).text();
-// })
 
-$("#searchButton").on("click", function () {
-  var queryURL = "http://makeup-api.herokuapp.com/api/v1/products.json?";
+$(".searchButton, .button").on("click", function () {
+  var type = "";
+  if ($(this).hasClass("button")) {
+    var type = $(this).text();
+  }
+  console.log(type);
+  var queryURL = "https://makeup-api.herokuapp.com/api/v1/products.json?";
   var makeup = $("#makeup-input").val();
-  var type = "blush";
+  // var type = "blush";
 console.log("makeup: " + makeup);
 // console.log("type: " + type);
   if (makeup !== "") {
     var temp = "brand=" + makeup;
     makeup = temp;
     queryURL += makeup;
+  }
+  if (makeup.indexOf(" ") !== -1) {
+    var temp = makeup.split(" ");
+    makeup = "";
+    for (var i = 0; i < temp.length; i++) {
+      if (i == temp.length - 1) {
+        makeup += temp[i];
+      } else {
+        makeup += temp[i] + "+";
+      }
+    }
   }
   if (type !== "") {
     var temp = "&product_type=" + type;
@@ -156,15 +168,21 @@ function showMakeupDetail(record) {
         "id": "myMap",
         "class": "modal-map",
     });
-
     modalEl.append(imgTag);
     // modalEl.append(closeButton);
     modalEl.append(detailName);
     modalEl.append(detailBrand);
     modalEl.append(mapDiv);
-    getLocation();
+    var latFromStorage = JSON.parse(localStorage.getItem("lat"));
+    var lonFromStorage = JSON.parse(localStorage.getItem("lon"));
+    if (!latFromStorage || !lonFromStorage) {
+      getLocation();
+    } else {
+      GetMap();
+    }
     }
 }
+
 
 function getMakeupInfo(queryURL) {
   //code here for ajax call and dynamic element creation
