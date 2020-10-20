@@ -146,6 +146,7 @@ console.log("makeup: " + makeup);
       .attr("src", makeupFromStorage[dataIndex].image_link)
       .attr("height", "30px")
       .attr("width", "30px")
+
       .attr("class", "images");
     $(".popup-content").append(imgTag);
     $(".popup-content").html("").append(imgTag);
@@ -231,6 +232,11 @@ function getMakeupInfo(queryURL) {
         .text("View Details");
       buttonRow.append(viewBtn);
       newCol.append(buttonRow);
+
+      // creating an on click for modal pop-up to be triggered
+
+      viewBtn.on("click", showMakeupDetail(response[i]));
+
 
       //appending to body, but can also append to a class or id
       $("#results-col").append(newRow);
