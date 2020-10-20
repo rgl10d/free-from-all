@@ -163,8 +163,8 @@ console.log("makeup: " + makeup);
     $(".popup-content").append(mapDiv);
     getLocation();
     $(".popup, .popup-content").addClass("active");
-    $(".btn.btn-secondary.btn-sm.close, .popup").on("click", function () {
-      $(".popup, .popup-content").removeClass("active");
+    $("#close, .popup-overlay").on("click", function() {
+      $(".popup-overlay, .popup-content").removeClass("active");
     });
     
 })
@@ -231,11 +231,6 @@ function getMakeupInfo(queryURL) {
         .text("View Details");
       buttonRow.append(viewBtn);
       newCol.append(buttonRow);
-
-      // creating an on click for modal pop-up to be triggered
-
-      // viewBtn.on("click", showMakeupDetail(response[i]));
-      // $(document).on("click", "btn", showMakeupDetail(response));
 
       //appending to body, but can also append to a class or id
       $("#results-col").append(newRow);
