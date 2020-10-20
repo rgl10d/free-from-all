@@ -219,19 +219,13 @@ function getMakeupInfo(queryURL) {
       newRow.append(newCol);
 
       //creating a button that we can select for the modal to pop up w/ product details
-      buttonRow = $("<div>")
-        .addClass("row")
-        .append($("<div>"))
-        .addClass("col-sm-12")
-        .attr("data-index", i);
-      var viewBtn = $("<button>")
-        .addClass("details btn btn-secondary btn-sm")
-        .attr("id", "details")
-        .attr("data-index", i)
-        .attr("type", "button")
-        .text("View Details");
-      buttonRow.append(viewBtn);
-      newCol.append(buttonRow);
+        var viewBtn=$("<button>").attr({
+            class:"button filter-btn results-btn",
+            id:"details-" + i,
+            "data-open":"product-details",
+            value:"view details"})
+            .text("Product Details");
+        newCol.append(viewBtn);
 
       // creating an on click for modal pop-up to be triggered
 
