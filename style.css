@@ -95,32 +95,75 @@ body {
   border-color: blue;
 }
 
+/* Results List Styles */
+.results-line {
+  border-bottom: 1px solid white;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.results-image {
+  height: 100px;
+  width: 100px;
+  float: left;
+  margin-right: 25px;
+}
+
+.results-btn {
+  float: right;
+  margin-bottom: 30px;
+}
+
+.names {
+  font-family: "Dancing Script", cursive;
+  color: white;
+}
+
+.prices {
+  color: white;
+}
+
+.description {
+  color: white;
+}
 
 
 /* Modal Styles */
-.popup-overlay {
-  visibility:hidden;
-}
-  
-.popup-content {
-  visibility:hidden;
-}
-
-.popup-content.active {
+#product-details {
   position: fixed;
-  visibility: visible;
-  z-index: 9999;
-  height: 700px;
-  width: 700px;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  border: 15px solid red;
+  transform: translate(-50%, 50%);
+  color: white;
   background-color: black;
+  padding: 20px;
+  border: 10px solid red;
 }
 
+#detail-name {
+  font-family: "Dancing Script", cursive;
+  margin-left: 165px;
+}
 
+#detail-brand {
+  border-bottom: 2px solid white;
+  margin-bottom: 23px;
+  margin-left: 165px;
+}
+
+.modal-image {
+  height: 150px;
+  width: 150px;
+  float: left;
+}
+
+.modal-map {
+  position: relative;
+  height: 400px;
+  width: 400px;
+  left: "50%";
+}
+
+/* Background Image Styles */
 .makeup-swoosh {
   position: fixed;
   top: 0;
@@ -161,9 +204,3 @@ body {
     max-width: 300px;
     height: auto;
   }
-
-  .popup-content.active {
-    height: 375px;
-    width: 375px;
-    
-}
