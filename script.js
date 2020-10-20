@@ -141,18 +141,24 @@ function showMakeupDetail(record) {
 
     var makeupFromStorage = JSON.parse(localStorage.getItem("makeupObject"));
     console.log(makeupFromStorage);
+    console.log(record);
     var imgTag = $("<img>").attr({
         "src": record.image_link,
         "class": "modal-image"});
     var detailName = $("<h3>").text(record.name).attr("id", "detail-name");
     var brandCaps = record.brand.toUpperCase();
     var detailBrand = $("<p>").text(brandCaps).attr("id", "detail-brand");
+    var detailBrand = $("<p>").text(brandCaps).attr("id", "detail-brand");
+    // var closeButton = $("<button>").html("");
+    // var detailTags = $("<p>").text(record.tags).attr("id", "detail-name");
+    $("#city-name").html("<h3>" + response.name + " (" + now + ")</h3>");
     var mapDiv = $("<div>").attr({
         "id": "myMap",
         "class": "modal-map",
     });
 
     modalEl.append(imgTag);
+    // modalEl.append(closeButton);
     modalEl.append(detailName);
     modalEl.append(detailBrand);
     modalEl.append(mapDiv);
