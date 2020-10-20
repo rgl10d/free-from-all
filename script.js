@@ -16,6 +16,7 @@ getLocation();
 var APIKey = "&rapidapi-key=092293fd7emshf39e0f6436d8314p1ad470jsnee116871f2d1";
 // $(document).ready(function() {
 
+
 function GetMap() {
   var latFromStorage = JSON.parse(localStorage.getItem("lat"));
   var lonFromStorage = JSON.parse(localStorage.getItem("lon"));
@@ -26,7 +27,6 @@ function GetMap() {
         latFromStorage,
         lonFromStorage
         );
-
         var map = new Microsoft.Maps.Map("#myMap", {
         center: centerPoint,
         });
