@@ -14,12 +14,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
     <link
       href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap"
       rel="stylesheet"
@@ -28,14 +23,13 @@
   </head>
   <body>
     <!--Search-->
-    <div class="col-sm-12">
+    <div class="cell">
       <h1 class="text-center" id="main-title">Free-from-All Makeup Source</h1>
-
     </div>
     <!--Makeup Image-->
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
+    <div class="grid-container">
+      <div class="grid-x">
+        <div class="cell">
           <img
             src="./assets/makeup-brush.png"
             alt="makeup brush with neutral powder on it"
@@ -45,9 +39,9 @@
       </div>
     </div>
     <!--Search-->
-    <div class="container" id="search-container">
-      <div class="row">
-        <div class="col-sm-12" id="search-col">
+    <div class="grid-container" id="search-container">
+      <div class="grid-x">
+        <div class="cell" id="search-col">
           <div class="input-group mb-3">
             <input
               type="text"
@@ -55,59 +49,41 @@
               id="makeup-input"
               placeholder="Search by brand/keyword"
             />
-            <div class="input-group-append">
-              <button class="btn btn-dark" type="button" id="searchButton">
+            <span class="input-group-append">
+              <button class="button" type="button" id="searchButton">
                 <i class="fas fa-search"></i>
               </button>
-            </div>
+            </span>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="container">
-      <div class="row">
-        <!-- Dropdown Button -->
-        <div class="col-sm-12 product">
-          <div class="dropdown">
-            <button
-              class="btn dropdown-toggle"
-              type="button"
-              id="makeup-types"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Makeup Types
-            </button>
-
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" id="blush-btn" href="#">Blush</a>
-              <a class="dropdown-item" id="bronzer-btn" href="#">Bronzer</a>
-              <a class="dropdown-item" id="eyebrow-btn" href="#">Eyebrow</a>
-              <a class="dropdown-item" id="eyeliner-btn" href="#">Eyeliner</a>
-              <a class="dropdown-item" id="eyeshadow-btn" href="#">Eyeshadow</a>
-              <a class="dropdown-item" id="foundation-btn" href="#"
-                >Foundation</a
-              >
-              <a class="dropdown-item" id="lipliner-btn" href="#">Lip Liner</a>
-              <a class="dropdown-item" id="lipstick-btn" href="#">Lipstick</a>
-              <a class="dropdown-item" id="mascara-btn" href="#">Mascara</a>
-              <a class="dropdown-item" id="nailpolish-btn" href="#"
-                >Nail Polish</a
-              >
+    
+    <!-- Type of makeup buttons -->
+    <div class="grid-container">
+      <div class="grid-x">
+        <div class="cell product">
+            <div class="cell product">
+              <a class="button type-btn" id="blush-btn" href="#">Blush</a>
+              <a class="button type-btn" id="bronzer-btn" href="#">Bronzer</a>
+              <a class="button type-btn" id="eyebrow-btn" href="#">Eyebrow</a>
+              <a class="button type-btn" id="eyeliner-btn" href="#">Eyeliner</a>
+              <a class="button type-btn" id="eyeshadow-btn" href="#">Eyeshadow</a>
+              <a class="button type-btn" id="foundation-btn" href="#">Foundation</a>
+              <a class="button type-btn" id="lipliner-btn" href="#">Lip Liner</a>
+              <a class="button type-btn" id="lipstick-btn" href="#">Lipstick</a>
+              <a class="button type-btn" id="mascara-btn" href="#">Mascara</a>
+              <a class="button type-btn" id="nailpolish-btn" href="#">Nail Polish</a>
             </div>
           </div>
         </div>
         <!-- Specific filter buttons -->
-        <div class="col-sm-12 product">
-          <button class="btn filter-btn" id="ewg-btn">EWG Verified</button>
-          <button class="btn filter-btn" id="org-btn">Organic</button>
-          <button class="btn filter-btn" id="chem-btn">Chemical Free</button>
-        </div>
-        <div class="col-sm-12 product">
-          <button class="btn filter-btn" id="veg-btn">Vegan</button>
-          <button class="btn filter-btn" id="glu-btn">Gluten Free</button>
+        <div class="cell product">
+          <button class="button filter-btn" id="ewg-btn">EWG Verified</button>
+          <button class="button filter-btn" id="org-btn">Organic</button>
+          <button class="button filter-btn" id="chem-btn">Chemical Free</button>
+          <button class="button filter-btn" id="veg-btn">Vegan</button>
+          <button class="button filter-btn" id="glu-btn">Gluten Free</button>
         </div>
       </div>
     </div>
@@ -124,20 +100,20 @@
     <!--popup's close button-->
         <button class="btn btn-secondary btn-sm close">x</button>    
       </div>
-  </div>
+    </div>
+
     <!--Javascript Links-->
     <script
       src="http://code.jquery.com/jquery-3.5.1.min.js"
       integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
     <script src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AizLYVCVmDtzFe35OyVFF6FoMBjJuPA96Bc_pPQ50KQ9oMiNl4Pr89MbxB6FbzG9'
           type='text/javascript' ></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation/foundation.js"></script>
+    <script src="js/foundation/foundation.dropdown.js"></script>
     <script src="script.js" async defer></script>
   </body>
 </html>
