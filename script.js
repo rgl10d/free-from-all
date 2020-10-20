@@ -107,7 +107,7 @@ $(".searchButton, .button").on("click", function () {
     var type = $(this).text();
   }
   console.log(type);
-  var queryURL = "http://makeup-api.herokuapp.com/api/v1/products.json?";
+  var queryURL = "https://makeup-api.herokuapp.com/api/v1/products.json?";
   var makeup = $("#makeup-input").val();
   // var type = "blush";
 console.log("makeup: " + makeup);
