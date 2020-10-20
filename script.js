@@ -110,7 +110,7 @@ $(document).ready(function() {
             //can resize the for loop to however long we want
             for (var i = 0; i < 10; i++) {
                 
-                var newRow = $("<div>").addClass("grid-x");
+                var newRow = $("<div>").attr("class", "grid-x");
                 var newCol = $("<div>").attr("class", "results-line cell");
                 
                 // imageRow = $("<div>").addClass("grid-x");
