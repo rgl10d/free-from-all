@@ -10,8 +10,8 @@ body {
   margin-top: 50px;
 }
 
-#tagline{
-  font-family: 'Cormorant Garamond', serif;
+#tagline {
+  font-family: "Cormorant Garamond", serif;
   color: white;
   font-size: 24px;
   margin-top: 1%;
@@ -27,7 +27,7 @@ body {
   margin-top: 20px;
 }
 
-.product{
+.product {
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -63,14 +63,13 @@ body {
   width: 130px;
 }
 
-
 .filter-btn:hover {
   background-color: black;
   color: white;
   border-color: red;
 }
 
-.filter-btn:focus{
+.filter-btn:focus {
   background-color: black;
   border-color: red;
 }
@@ -90,7 +89,7 @@ body {
   border-color: blue;
 }
 
-.type-btn:focus{
+.type-btn:focus {
   background-color: black;
   border-color: blue;
 }
@@ -126,7 +125,6 @@ body {
 .description {
   color: white;
 }
-
 
 /* Modal Styles */
 #product-details {
@@ -164,12 +162,18 @@ body {
 }
 
 /* Background Image Styles */
-.makeup-swoosh {
+.makeup-swoosh-img {
   position: fixed;
-  top: 0;
-  right: 440px;
-  text-align: center;
-  transform: rotate(-38deg);
+  top: 20px;
+  right: 0;
+  transform: rotate(-35deg);
+}
+
+.makeup-swoosh-img-2 {
+  position: fixed;
+  top: 700px;
+  left: 0;
+  transform: rotate(22deg);
   z-index: -1;
 }
 
@@ -178,12 +182,11 @@ body {
   text-align: center;
 }
 
-.makeup-stroke{
+.makeup-stroke {
   text-align: center;
   margin-top: 60px;
   margin-bottom: 60px;
 }
-
 
 /* Title Image */
 #makeup-img {
@@ -204,3 +207,4 @@ body {
     max-width: 300px;
     height: auto;
   }
+}
