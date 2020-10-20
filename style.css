@@ -87,6 +87,7 @@ body {
 }
 
 
+
 /* Modal Styles */
 .popup-overlay {
   visibility:hidden;
@@ -110,6 +111,7 @@ body {
   background-color: black;
 }
 
+
 .makeup-swoosh {
   position: fixed;
   top: 0;
@@ -129,6 +131,7 @@ body {
   margin-top: 60px;
   margin-bottom: 60px;
 }
+
 
 /* Title Image */
 #makeup-img {
