@@ -219,7 +219,7 @@ function getMakeupInfo(queryURL) {
 
       // creating an on click for modal pop-up to be triggered
 
-      // viewBtn.on("click", showMakeupDetail(response[i]));
+      viewBtn.on("click", showMakeupDetail(response[i]));
 
 
       //appending to body, but can also append to a class or id
