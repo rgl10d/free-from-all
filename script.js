@@ -103,8 +103,12 @@ function GetMap() {
 
 $(".searchButton, .button").on("click", function () {
   var type = "";
-  if ($(this).hasClass("button")) {
+  var tag = "";
+  if ($(this).hasClass("type-btn")) {
     var type = $(this).text();
+  }
+  if ($(this).hasClass("filter-btn")) {
+    var tag = $(this).text();
   }
   console.log(type);
   var queryURL = "https://makeup-api.herokuapp.com/api/v1/products.json?";
@@ -112,19 +116,30 @@ $(".searchButton, .button").on("click", function () {
   // var type = "blush";
 console.log("makeup: " + makeup);
 // console.log("type: " + type);
+if (makeup.indexOf(" ") !== -1) {
+  var temp = makeup.split(" ");
+  makeup = "";
+  for (var i = 0; i < temp.length; i++) {
+    if (i == temp.length - 1) {
+      makeup += temp[i];
+    } else {
+      makeup += temp[i] + "+";
+    }
+  }
+}
   if (makeup !== "") {
     var temp = "brand=" + makeup;
     makeup = temp;
     queryURL += makeup;
   }
-  if (makeup.indexOf(" ") !== -1) {
-    var temp = makeup.split(" ");
-    makeup = "";
+  if (type.indexOf(" ") !== -1) {
+    var temp = type.split(" ");
+    type = "";
     for (var i = 0; i < temp.length; i++) {
       if (i == temp.length - 1) {
-        makeup += temp[i];
+        type += temp[i];
       } else {
-        makeup += temp[i] + "+";
+        type += temp[i] + "+";
       }
     }
   }
@@ -133,6 +148,23 @@ console.log("makeup: " + makeup);
     type = temp;
     queryURL += type;
   }
+  if (tag.indexOf(" ") !== -1) {
+    var temp = tag.split(" ");
+    tag = "";
+    for (var i = 0; i < temp.length; i++) {
+      if (i == temp.length - 1) {
+        tag += temp[i];
+      } else {
+        tag += temp[i] + "+";
+      }
+    }
+  }
+  if (tag !== "") {
+    var temp = "&product_tags=" + tag;
+    tag = temp;
+    queryURL += tag;
+  }
+
 
   //need to create model function that will add results
   queryURL += APIKey;
