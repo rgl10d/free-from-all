@@ -22,16 +22,24 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!--Search-->
+    <!--Title-->
     <div class="cell">
       <h1 class="text-center" id="main-title">Free-from-All Makeup Source</h1>
     </div>
+    <!--Makeup Swatch 1 [WIP]-->
+    <!-- <div class="makeup-swoosh">
+      <img
+        src="./assets/makeup-swoosh-300.png"
+        alt="neutral line with curved pattern"
+        class="makeup-stroke-img"
+      />
+    </div> -->
     <!--Makeup Image-->
     <div class="grid-container">
       <div class="grid-x">
         <div class="cell">
           <img
-            src="./assets/makeup-brush.png"
+            src="./assets/makeup-brush-1000px.png"
             alt="makeup brush with neutral powder on it"
             id="makeup-img"
           />
@@ -77,6 +85,7 @@
             </div>
           </div>
         </div>
+
         <!-- Specific filter buttons -->
         <div class="cell product">
           <button class="button filter-btn" id="ewg-btn" data-makeupType="ewg">EWG Verified</button>
@@ -84,10 +93,22 @@
           <button class="button filter-btn" id="chem-btn" data-makeupType="chemfree">Chemical Free</button>
           <button class="button filter-btn" id="veg-btn" data-makeupType="vegan">Vegan</button>
           <button class="button filter-btn" id="glu-btn" data-makeupType="glutenfree">Gluten Free</button>
-
         </div>
       </div>
     </div>
+        <!--Makeup Brush Stroke-->
+        <div class="grid-container makeup-stroke">
+          <div class="grid-x">
+            <div class="cell">
+              <img
+                src="./assets/makeup-line-300px.png"
+                alt="neutral line with curved pattern"
+                class="makeup-stroke-img"
+              />
+            </div>
+          </div>
+
+        </div>
     <!-- empty container for the results  -->
     <div class="container" id="results-container">
       <div class="row">
@@ -109,6 +130,8 @@
         <button class="btn btn-secondary btn-sm close">x</button>  
         <div id="myMap" style="position:relative;width:500px;height:400px;"></div>
       </div>
+    </div>
+
 
     <!--Javascript Links-->
     <script

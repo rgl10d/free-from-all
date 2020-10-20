@@ -19,9 +19,9 @@ body {
 }
 
 .product{
-  display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 /* Buttons */
@@ -49,8 +49,9 @@ body {
   color: white;
   background-color: black;
   border-color: white;
-  border-width: thick;
+  border-width: 2px;
   margin: 20px 5px 0px 0px;
+  width: 130px;
 }
 
 
@@ -69,8 +70,9 @@ body {
   color: white;
   background-color: black;
   border-color: white;
-  border-width: thick;
+  border-width: 2px;
   margin: 20px 5px 0px 0px;
+  width: 105px;
 }
 
 .type-btn:hover {
@@ -83,6 +85,7 @@ body {
   background-color: black;
   border-color: blue;
 }
+
 
 
 /* Modal Styles */
@@ -106,6 +109,27 @@ body {
   padding: 20px;
   border: 15px solid red;
   background-color: black;
+}
+
+
+.makeup-swoosh {
+  position: fixed;
+  top: 0;
+  right: 440px;
+  text-align: center;
+  transform: rotate(-38deg);
+  z-index: -1;
+}
+
+.makeup-stroke-img {
+  margin: auto;
+  text-align: center;
+}
+
+.makeup-stroke{
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 
