@@ -100,21 +100,32 @@ function GetMap() {
     }
 }
 
-// var type = "";
-// $(".button").on("click", function() {
-//   type = $(this).text();
-// })
 
-$("#searchButton").on("click", function () {
+$(".searchButton, .button").on("click", function () {
+  var type = "";
+  if ($(this).hasClass("button")) {
+    var type = $(this).text();
+  }
+  console.log(type);
   var queryURL = "http://makeup-api.herokuapp.com/api/v1/products.json?";
   var makeup = $("#makeup-input").val();
-  var type = "blush";
+  // var type = "blush";
 console.log("makeup: " + makeup);
 // console.log("type: " + type);
   if (makeup !== "") {
     var temp = "brand=" + makeup;
     makeup = temp;
     queryURL += makeup;
+  } else if (makeup.indexOf(" ") !== -1) {
+    var temp = makeup.split(" ");
+    makeup = "";
+    for (var i = 0; i < temp.length; i++) {
+      if (i == temp.length - 1) {
+        makeup += temp[i];
+      } else {
+        makeup += temp[i] + "+";
+      }
+    }
   }
   if (type !== "") {
     var temp = "&product_type=" + type;
@@ -162,7 +173,13 @@ console.log("makeup: " + makeup);
       "left": "50%"
     });
     $(".popup-content").append(mapDiv);
-    getLocation();
+    var latFromStorage = JSON.parse(localStorage.getItem("lat"));
+    var lonFromStorage = JSON.parse(localStorage.getItem("lon"));
+    if (!latFromStorage || !lonFromStorage) {
+      getLocation();
+    } else {
+      GetMap();
+    }
     $(".popup, .popup-content").addClass("active");
     $("#close, .popup-overlay").on("click", function() {
       $(".popup-overlay, .popup-content").removeClass("active");
@@ -235,7 +252,7 @@ function getMakeupInfo(queryURL) {
 
       // creating an on click for modal pop-up to be triggered
 
-      viewBtn.on("click", showMakeupDetail(response[i]));
+      // viewBtn.on("click", showMakeupDetail(response[i]));
 
 
       //appending to body, but can also append to a class or id
