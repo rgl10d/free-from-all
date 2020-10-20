@@ -201,10 +201,8 @@ function getMakeupInfo(queryURL) {
 
       //add data item to name or image?
       nameEl = $("<h3>").addClass("names").text(response[i].name);
-      priceEl = $("<p>").addClass("prices").text("$" + response[i].price);
       descriptionEl = $("<p>").addClass("description").text(response[i].description);
       newCol.append(nameEl);
-      newCol.append(priceEl);
       newCol.append(descriptionEl);
       newRow.append(newCol);
 
