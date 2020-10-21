@@ -41,7 +41,7 @@ function GetMap() {
         })
         //place the infobox onto the map
         infobox.setMap(map);
-
+       // get user current location 
         var userLoc = new Microsoft.Maps.Location(latFromStorage, lonFromStorage);
         //create pushpin to show the user's location
         var pin = new Microsoft.Maps.Pushpin(userLoc, {
@@ -49,6 +49,7 @@ function GetMap() {
         color: "red",
         visible: true,
         });
+        // adding a new pin to new location 
         map.entities.push(pin);
         
         //set the map zoom and map type to road
@@ -64,14 +65,18 @@ function GetMap() {
         "," +
         lonFromStorage +
         ",10&key=AizLYVCVmDtzFe35OyVFF6FoMBjJuPA96Bc_pPQ50KQ9oMiNl4Pr89MbxB6FbzG9";
-
+      // make a ajax call to Microsoft api 
         $.ajax({
             url: storeURL,
             method: "GET",
         }).then(function (response) {
             var array = response.resourceSets[0].resources;
+            console.log(array);
+            // arrey the items from the map and pin them to the map
+
             // console.log(array);
             //iterate through nearby stores and get the coordinates
+
             for (var i = 0; i < array.length; i++) {
                 var loc = new Microsoft.Maps.Location(
                     array[i].point.coordinates[0],
@@ -89,7 +94,9 @@ function GetMap() {
                     title: array[i].name,
                     description: array[i].Address.formattedAddress + "\n" + array[i].PhoneNumber
                 };
-                //create event listener for mouseover that will display metadata
+
+                // when user hovers over the pin will show info about location 
+
                 Microsoft.Maps.Events.addHandler(pin, "mouseover", pushpinHover);
                 map.entities.push(pin);
             }
@@ -108,8 +115,8 @@ function GetMap() {
         }
     }
 }
-
 //event delegation for all initial buttons
+
 $(".searchButton, .button").on("click", function () {
   var type = "";
   var tag = "";
@@ -194,6 +201,7 @@ if (makeup.indexOf(" ") !== -1) {
 
 
 function showMakeupDetail(record) {
+    // return anonymous function that is bound to the record
   return function(){
     var modalEl = $("#product-details");
       modalEl.html("");
@@ -221,6 +229,7 @@ function showMakeupDetail(record) {
     modalEl.append(mapDiv);
     var latFromStorage = JSON.parse(localStorage.getItem("lat"));
     var lonFromStorage = JSON.parse(localStorage.getItem("lon"));
+    // if the location it is not cached feth it on storage
     if (!latFromStorage || !lonFromStorage) {
       getLocation();
     } else {
@@ -266,7 +275,7 @@ function getMakeupInfo(queryURL) {
             .text("Product Details");
         newCol.append(viewBtn);
 
-      // creating an on click for modal pop-up to be triggered
+      // creating an on click for modal pop-up to be triggered for this detail item
 
       viewBtn.on("click", showMakeupDetail(response[i]));
 
