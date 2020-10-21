@@ -1,3 +1,4 @@
+//use the window object to obtain the user's location
 function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -7,40 +8,42 @@ function getLocation() {
 }
 
 function showPosition(position) {
+  //store the latitude and longitude in local storage for the map
   localStorage.setItem("lat", JSON.stringify(position.coords.latitude));
   localStorage.setItem("lon", JSON.stringify(position.coords.longitude));
+  // call the map function to generate the map based on the user's coordinates 
   GetMap();
 }
-// getLocation();
+
 
 var APIKey = "&rapidapi-key=092293fd7emshf39e0f6436d8314p1ad470jsnee116871f2d1";
-// $(document).ready(function() {
 
-
+// function for the map based off Bing Maps documentation 
 function GetMap() {
+  // retrieve user coordinates 
   var latFromStorage = JSON.parse(localStorage.getItem("lat"));
   var lonFromStorage = JSON.parse(localStorage.getItem("lon"));
   if (!latFromStorage || !lonFromStorage) {
     console.log("Please enable geolocation");
   } else {
-    //   get current location
+    //create new location centerPoint 
         var centerPoint = new Microsoft.Maps.Location(
         latFromStorage,
         lonFromStorage
         );
-        // create a new map around current location
+        // create new map centered on the user's coordinates
         var map = new Microsoft.Maps.Map("#myMap", {
         center: centerPoint,
         });
-    
+        //create infobox for each pushpin. set it to not visible for now
         var infobox = new Microsoft.Maps.Infobox(centerPoint, {
             visible: false
         })
-
+        //place the infobox onto the map
         infobox.setMap(map);
        // get user current location 
         var userLoc = new Microsoft.Maps.Location(latFromStorage, lonFromStorage);
-        // getting pin for location 
+        //create pushpin to show the user's location
         var pin = new Microsoft.Maps.Pushpin(userLoc, {
         title: "You",
         color: "red",
@@ -48,14 +51,14 @@ function GetMap() {
         });
         // adding a new pin to new location 
         map.entities.push(pin);
-        // pin.setOptions({ enableHoverStyle: true, enableClickedStyle: true });
-
+        
+        //set the map zoom and map type to road
         map.setView({
         mapTypeId: Microsoft.Maps.MapTypeId.road,
         center: centerPoint,
         zoom: 11,
         });
-
+        //URL for the local stores API call
         var storeURL =
         "https://dev.virtualearth.net/REST/v1/LocalSearch/?type=DepartmentStores&userLocation=" +
         latFromStorage +
@@ -70,29 +73,37 @@ function GetMap() {
             var array = response.resourceSets[0].resources;
             console.log(array);
             // arrey the items from the map and pin them to the map
+
+            // console.log(array);
+            //iterate through nearby stores and get the coordinates
+
             for (var i = 0; i < array.length; i++) {
                 var loc = new Microsoft.Maps.Location(
                     array[i].point.coordinates[0],
                     array[i].point.coordinates[1]
                 );
-                
+                //create a new pushpin for each local store 
                 var pin = new Microsoft.Maps.Pushpin(loc, {
                 //   icon: 45,
                 visible: true,
                 color: "blue",
-                title: array[i].name
+                title: array[i].name //add title of store to the pushpin 
                 });
-
+                //metadata for each pusphin for the infobox
                 pin.metadata = {
                     title: array[i].name,
                     description: array[i].Address.formattedAddress + "\n" + array[i].PhoneNumber
                 };
+
                 // when user hovers over the pin will show info about location 
+
                 Microsoft.Maps.Events.addHandler(pin, "mouseover", pushpinHover);
                 map.entities.push(pin);
             }
         });   
     }
+    //function for the pushpin event handler that will display the infobox for each pushpin
+    //with the name, address, and phone number
     function pushpinHover(e) {
         if (e.target.metadata) {
             infobox.setOptions({
@@ -104,26 +115,31 @@ function GetMap() {
         }
     }
 }
-// add on click search button 
+//event delegation for all initial buttons
 
 $(".searchButton, .button").on("click", function () {
   var type = "";
   var tag = "";
+  //if this is a product type button get text value
   if ($(this).hasClass("type-btn")) {
     var type = $(this).text();
   }
+  //if this is a filter button get text value
   if ($(this).hasClass("filter-btn")) {
     var tag = $(this).text();
   }
   console.log(type);
   var queryURL = "https://makeup-api.herokuapp.com/api/v1/products.json?";
+  //retrieve search bar value
   var makeup = $("#makeup-input").val();
-  // var type = "blush";
-console.log("makeup: " + makeup);
+
+// console.log("makeup: " + makeup);
 // console.log("type: " + type);
+//check if makeup has spaces
 if (makeup.indexOf(" ") !== -1) {
   var temp = makeup.split(" ");
   makeup = "";
+  //iterate through split string array and put a "+" after each index except the last
   for (var i = 0; i < temp.length; i++) {
     if (i == temp.length - 1) {
       makeup += temp[i];
@@ -132,14 +148,17 @@ if (makeup.indexOf(" ") !== -1) {
     }
   }
 }
+//check if makeup is empty, if not add to the URL
   if (makeup !== "") {
     var temp = "brand=" + makeup;
     makeup = temp;
     queryURL += makeup;
   }
+  //check if product type has spaces
   if (type.indexOf(" ") !== -1) {
     var temp = type.split(" ");
     type = "";
+    //iterate through split string array and put a "+" after each index except the last
     for (var i = 0; i < temp.length; i++) {
       if (i == temp.length - 1) {
         type += temp[i];
@@ -148,6 +167,7 @@ if (makeup.indexOf(" ") !== -1) {
       }
     }
   }
+  //check if product type is empty (not selected), if not then add to URL
   if (type !== "") {
     var temp = "&product_type=" + type;
     type = temp;
@@ -156,6 +176,7 @@ if (makeup.indexOf(" ") !== -1) {
   if (tag.indexOf(" ") !== -1) {
     var temp = tag.split(" ");
     tag = "";
+    //iterate through split string array and put a "+" after each index except the last
     for (var i = 0; i < temp.length; i++) {
       if (i == temp.length - 1) {
         tag += temp[i];
@@ -164,6 +185,7 @@ if (makeup.indexOf(" ") !== -1) {
       }
     }
   }
+  //check if product tag is empty (not selected), if not then add to URL
   if (tag !== "") {
     var temp = "&product_tags=" + tag;
     tag = temp;
@@ -171,9 +193,9 @@ if (makeup.indexOf(" ") !== -1) {
   }
 
 
-  //need to create model function that will add results
+  //add APIkey to url
   queryURL += APIKey;
-  console.log(queryURL);
+  // console.log(queryURL);
   getMakeupInfo(queryURL);
 });
 
