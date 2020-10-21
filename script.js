@@ -212,13 +212,12 @@ function showMakeupDetail(record) {
 
 function getMakeupInfo(queryURL) {
   //code here for ajax call and dynamic element creation
-
+  $("#results-col").empty();
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function (response) {
     localStorage.setItem("makeupObject", JSON.stringify(response));
-
     //can resize the for loop to however long we want
     for (var i = 0; i < 10; i++) {
         var newRow = $("<div>").attr("class", "grid-x");
