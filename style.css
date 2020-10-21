@@ -193,6 +193,10 @@ body {
   margin-left: 165px;
 }
 
+#detail-tags {
+  margin: 0px 0px 0px 170px;
+}
+
 .modal-image {
   height: 150px;
   width: 150px;
@@ -206,6 +210,7 @@ body {
   left: "50%";
   margin-top: 15%;
 }
+
 
 /* Background Image Styles */
 .makeup-swoosh-img {

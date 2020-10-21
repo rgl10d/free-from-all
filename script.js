@@ -206,19 +206,20 @@ function showMakeupDetail(record) {
     var modalEl = $("#product-details");
       modalEl.html("");
       var dataIndex = $(this).attr("data-index");
-    // }
       
   
   //    Return anonymous function tied to record detail
 
     var makeupFromStorage = JSON.parse(localStorage.getItem("makeupObject"));
     console.log(makeupFromStorage);
+    console.log(record);
     var imgTag = $("<img>").attr({
         "src": record.image_link,
         "class": "modal-image"});
     var detailName = $("<h3>").text(record.name).attr("id", "detail-name");
     var brandCaps = record.brand.toUpperCase();
     var detailBrand = $("<p>").text(brandCaps).attr("id", "detail-brand");
+    var detailTags = $("<p>").attr("id", "detail-tags").text("Tags: " + record.tag_list);
     var mapDiv = $("<div>").attr({
         "id": "myMap",
         "class": "modal-map",
@@ -226,6 +227,7 @@ function showMakeupDetail(record) {
     modalEl.append(imgTag);
     modalEl.append(detailName);
     modalEl.append(detailBrand);
+    modalEl.append(detailTags);
     modalEl.append(mapDiv);
     var latFromStorage = JSON.parse(localStorage.getItem("lat"));
     var lonFromStorage = JSON.parse(localStorage.getItem("lon"));
@@ -235,7 +237,7 @@ function showMakeupDetail(record) {
     } else {
       GetMap();
     }
-    }
+  }
 }
 
 
@@ -265,7 +267,6 @@ function getMakeupInfo(queryURL) {
       newCol.append(nameEl);
       newCol.append(descriptionEl);
       newRow.append(newCol);
-
       //creating a button that we can select for the modal to pop up w/ product details
         var viewBtn=$("<button>").attr({
             class:"button filter-btn results-btn",
