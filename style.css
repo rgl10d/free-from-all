@@ -148,6 +148,10 @@ body {
   margin-left: 165px;
 }
 
+#detail-tags {
+  margin: 0px 0px 0px 170px;
+}
+
 .modal-image {
   height: 150px;
   width: 150px;
