@@ -1,6 +1,4 @@
-Free from All - A Makeup Sourcing Project 
-
-# Free-from-All
+# Free-from-All: A Makeup Sourcing Project
 An application to source toxin-free makeup using CSS, Jquery, HTML, & APIs. 
 
 ## Description 
@@ -18,21 +16,27 @@ Free-from-All allows users to input their current location & search for the make
 
 ## Installation
 
-In order to access the application, please visit the following site: (NEED TO ENABLE PAGES IN SETTINGS FOR LINK)
+In order to access the application, please visit the following site: https://rgl10d.github.io/free-from-all/ 
 
 
 ## Usage 
 
-Once the user has entered the site, please enable geolocation by clicking "allow".
-<img width="1290" alt="Geolocation Prompt" src="https://user-images.githubusercontent.com/69877380/96521662-c0b10b80-123f-11eb-91fa-d580961490d0.png">
+Once the user has entered the site, the below screen will be displayed.
 
-The user can has the option to quick search the makeup item type (ex.lipstick) or brand that they are looking for, or they can choose to select from a dropdown. Additionally, the user will click on toxin-free tags in order to search for products that meet those requirements.
-<img width="1290" alt="Search Bar & Makeup Tags" src="https://user-images.githubusercontent.com/69877380/96522020-901da180-1240-11eb-9c02-f546930c97b6.png">
+<img width="1650" alt="Screen Shot main screen" src="https://user-images.githubusercontent.com/69877380/96663125-09d78d00-131e-11eb-97f2-7bfc0bc272ec.png">
 
-Once the search button is clicked, a list of products will appear (PENDING IMAGE ONCE PROJECT IS FINALIZED)
+The user can has the option to quick search the makeup brand (ex.Covergirl) that they are looking for, select makeup type, & click on toxin-free tags in order to search for products that meet those requirements.
+
+<img width="1650" alt="Screen Shot 2020-10-20 at 9 46 39 PM" src="https://user-images.githubusercontent.com/69877380/96663256-558a3680-131e-11eb-9604-565af38997ac.png">
+
+Once the search button is clicked, a list of products meeting the user requirements will appear.
+
+<img width="1650" alt="Screen Shot 2020-10-20 at 9 47 14 PM" src="https://user-images.githubusercontent.com/69877380/96663349-866a6b80-131e-11eb-9311-f773b94239aa.png">
 
 
-The user is then able to select "view details" on the products they are interested in, which will pop-up with description and nearby stores in a modal. (NEED TO ADD IMAGE)
+The user is then able to select "view details" on the products they are interested in, which will result in a modal with nearby stores.
+
+<img width="1650" alt="Screen Shot 2020-10-20 at 9 47 43 PM" src="https://user-images.githubusercontent.com/69877380/96663469-b6197380-131e-11eb-8fcb-4907770faf94.png">
 
 
 
@@ -46,7 +50,7 @@ Rachel Yarger: https://github.com/reyarger
 Shelby Andersen: https://github.com/shelbyandersen
 
 API References: 
-http://makeup-api.herokuapp.com/api/v1/products.json
+http://makeup-api.herokuapp.com/api/v1/products.json &
 https://docs.microsoft.com/en-us/bingmaps/rest-services/
 
 ## License
