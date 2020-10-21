@@ -23,10 +23,12 @@ function GetMap() {
   if (!latFromStorage || !lonFromStorage) {
     console.log("Please enable geolocation");
   } else {
+    //   get current location
         var centerPoint = new Microsoft.Maps.Location(
         latFromStorage,
         lonFromStorage
         );
+        // create a new map around current location
         var map = new Microsoft.Maps.Map("#myMap", {
         center: centerPoint,
         });
@@ -36,13 +38,15 @@ function GetMap() {
         })
 
         infobox.setMap(map);
-
+       // get user current location 
         var userLoc = new Microsoft.Maps.Location(latFromStorage, lonFromStorage);
+        // getting pin for location 
         var pin = new Microsoft.Maps.Pushpin(userLoc, {
         title: "You",
         color: "red",
         visible: true,
         });
+        // adding a new pin to new location 
         map.entities.push(pin);
         // pin.setOptions({ enableHoverStyle: true, enableClickedStyle: true });
 
@@ -58,14 +62,14 @@ function GetMap() {
         "," +
         lonFromStorage +
         ",10&key=AizLYVCVmDtzFe35OyVFF6FoMBjJuPA96Bc_pPQ50KQ9oMiNl4Pr89MbxB6FbzG9";
-
+      // make a ajax call to Microsoft api 
         $.ajax({
             url: storeURL,
             method: "GET",
         }).then(function (response) {
             var array = response.resourceSets[0].resources;
             console.log(array);
-            
+            // arrey the items from the map and pin them to the map
             for (var i = 0; i < array.length; i++) {
                 var loc = new Microsoft.Maps.Location(
                     array[i].point.coordinates[0],
@@ -83,6 +87,7 @@ function GetMap() {
                     title: array[i].name,
                     description: array[i].Address.formattedAddress + "\n" + array[i].PhoneNumber
                 };
+                // when user hovers over the pin will show info about location 
                 Microsoft.Maps.Events.addHandler(pin, "mouseover", pushpinHover);
                 map.entities.push(pin);
             }
@@ -99,7 +104,7 @@ function GetMap() {
         }
     }
 }
-
+// add on click search button 
 
 $(".searchButton, .button").on("click", function () {
   var type = "";
@@ -174,6 +179,7 @@ if (makeup.indexOf(" ") !== -1) {
 
 
 function showMakeupDetail(record) {
+    // return anonymous function that is bound to the record
   return function(){
     var modalEl = $("#product-details");
       modalEl.html("");
@@ -201,6 +207,7 @@ function showMakeupDetail(record) {
     modalEl.append(mapDiv);
     var latFromStorage = JSON.parse(localStorage.getItem("lat"));
     var lonFromStorage = JSON.parse(localStorage.getItem("lon"));
+    // if the location it is not cached feth it on storage
     if (!latFromStorage || !lonFromStorage) {
       getLocation();
     } else {
@@ -246,7 +253,7 @@ function getMakeupInfo(queryURL) {
             .text("Product Details");
         newCol.append(viewBtn);
 
-      // creating an on click for modal pop-up to be triggered
+      // creating an on click for modal pop-up to be triggered for this detail item
 
       viewBtn.on("click", showMakeupDetail(response[i]));
 
